@@ -20,6 +20,8 @@ dependencies {
     bundled("it.unimi.dsi:fastutil:8.5.18") // Apache 2.0
     bundled("org.joml:joml:1.10.8") // MIT
     bundled("com.mojang:brigadier:1.0.18") // MIT
+    bundled("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api:${jvmDgVersion}:downgraded-8") // LGPL 2.1
+    bundled("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api:${jvmDgVersion}:downgraded-17") // LGPL 2.1
     compileOnlyApi("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api:${jvmDgVersion}:downgraded-8") { transitive = false } // LGPL 2.1
 
     // Slow-moving fat lib holding external deps
