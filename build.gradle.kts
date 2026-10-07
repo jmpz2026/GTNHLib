@@ -46,6 +46,19 @@ tasks.processResources {
     from(configurations["deploader"]) {
         rename { "fplib_deploader.jar" }
     }
+    // DBR: bundle the gtnhlib_deps.json libraries as a local Maven repo inside the jar, like GTNHExtLib does,
+    // so the DepLoader copies them from here instead of downloading them on first launch.
+    val bundled = configurations["bundled"]
+    bundled.resolvedConfiguration.resolvedArtifacts.forEach { a ->
+        val id = a.moduleVersion.id
+        into("META-INF/falsepatternlib_repo/${id.group.replace('.', '/')}/${id.name}/${id.version}/") {
+            from(a.file)
+        }
+    }
+    // Upstream license texts for the bundled libraries
+    from(rootProject.file("bundled-licenses")) {
+        into("META-INF/falsepatternlib_repo/licenses")
+    }
 }
 
 tasks.test {
